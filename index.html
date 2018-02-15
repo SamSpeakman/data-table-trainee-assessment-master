@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="content-language" content="en" />
+<meta http-equiv="Content-Type" content="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<link href="mains.css" media="all" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<script src="jquery-2.1.1.js"></script>
+
+<div id="title">
+<h1>Monthly Number of Broadcasts per BBC Channel for the Year 2009</h1>
+<hr>
+</div>
+
+<div class="container">
+<div class="table-responsive">
+<table class ="table_table" id="bbc_table">
+
+    <tr>
+              <th>Date</th>
+
+              <th>BBC Four</th>
+              <th>BBC One</th>
+              <th>BBC Three</th>
+              <th>BBC News 24</th>
+              <th>BBC Two</th>
+              <th>CBBC</th>
+              <th>Cbeebies</th>
+          </tr>
+      </table>
+    </div>
+  <div>
+
+<script>
+
+
+$(document).ready(function(){
+  $.getJSON("data.json", function (data) {
+    var bbc_data = '';
+    $.each(data, function(key, value) {
+      bbc_data += '<tr>';
+      bbc_data += '<td>' + key+'</td>';
+      bbc_data += '<td>' +value.bbcfour+'</td>';
+      bbc_data += '<td>' +value.bbcone+'</td>';
+      bbc_data += '<td>' +value.bbcthree+'</td>';
+      bbc_data += '<td>' +value.bbcnews24+'</td>';
+      bbc_data += '<td>' +value.bbctwo+'</td>';
+      bbc_data += '<td>' +value.cbbc+'</td>';
+      bbc_data += '<td>' +value.cbeebies+'</td>';
+      bbc_data += '</tr>';
+      console.log(data);
+    });
+    $('#bbc_table').append(bbc_data);
+  });
+});
+
+</script>
+
+
+
+</body>
+</html>
